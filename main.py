@@ -7,7 +7,8 @@ import clean_csv
 
 if __name__ == '__main__':
     project_name = datetime.datetime.now().strftime("%d_%m_%Y")
-    web_crawler = crawl.Crawl(project_name)
+    web_crawler = crawl.Crawl()
+    web_crawler.crawl(project_name)
 
     csv_path = 'data.csv'
     to_csv = add_to_csv.ToCSV(csv_path)
