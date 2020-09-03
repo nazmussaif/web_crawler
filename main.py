@@ -18,6 +18,7 @@ if __name__ == '__main__':
     to_csv = add_to_csv.ToCSV(csv_path)
 
     rootDir = 'thedailystar/' + project_name
+    i = 0
     for current_folder, sub_folders, fileList in os.walk(rootDir):
         if 'bangla' in current_folder:
             # print(current_folder)
@@ -27,7 +28,10 @@ if __name__ == '__main__':
                 full_path = os.path.join(current_folder, file)
                 normalised = os.path.normpath(full_path)
                 normalised = normalised.replace('\\', '/')
-                print(normalised)
                 to_csv.add(normalised)
-    logger.write('Data added')
+
+                i += 1
+                print(i, normalised)
+
+    logger.write(str(i) + ' article parsed')
     clean_csv.CleanCSV(csv_path)
