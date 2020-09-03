@@ -3,12 +3,16 @@ import datetime
 import crawl
 import add_to_csv
 import clean_csv
+import logger
 
 
 if __name__ == '__main__':
     project_name = datetime.datetime.now().strftime("%d_%m_%Y")
+
+    logger.write('Crawling start')
     web_crawler = crawl.Crawl()
     web_crawler.crawl(project_name)
+    logger.write('Crawling end')
 
     csv_path = 'data.csv'
     to_csv = add_to_csv.ToCSV(csv_path)
@@ -25,5 +29,5 @@ if __name__ == '__main__':
                 normalised = normalised.replace('\\', '/')
                 print(normalised)
                 to_csv.add(normalised)
-
+    logger.write('Data added')
     clean_csv.CleanCSV(csv_path)
